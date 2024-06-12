@@ -24,13 +24,12 @@ func KillProc(name string) error {
 	defer session.Close()
 	var b bytes.Buffer
 	session.Stdout = &b
-	session.Run(fmt.Sprintf("pidin | grep %s", name))
+	session.Run(fmt.Sprintf("ps -e | grep %s", name))
 	scanner := bufio.NewScanner(bytes.NewReader(b.Bytes()))
 	for scanner.Scan() {
 		s := scanner.Text()
 		s = strings.TrimLeft(s, " ")
 		bs := strings.Split(s, " ")
-		fmt.Println(bs[0])
 		res = append(res, bs[0])
 	}
 	for _, v := range res {
@@ -105,5 +104,5 @@ func GetSystem() string {
 	}
 	bs := b.String()
 	bbs := strings.Split(bs, " ")
-	return bbs[0]
+	return bbs[1]
 }

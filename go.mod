@@ -3,6 +3,7 @@ module github.com/ruraomsk/setpotop
 go 1.21.4
 
 require (
+	github.com/bramvdbogaerde/go-scp v1.4.0
 	github.com/pkg/sftp v1.13.6
 	golang.org/x/crypto v0.24.0
 )
