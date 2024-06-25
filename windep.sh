@@ -5,3 +5,8 @@ if [ $? -ne 0 ]; then
 	echo 'An error has occurred! Aborting the script execution...'
 	exit 1
 fi
+go build
+if [ $? -ne 0 ]; then
+	echo 'An error has occurred! Aborting the script execution...'
+	exit 1
+fi
