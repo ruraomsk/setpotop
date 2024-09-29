@@ -29,20 +29,20 @@ func main() {
 	User = flag.String("user", "root", "Имя пользователя")
 	Password = flag.String("pass", "root", "Пароль")
 	flag.Parse()
-	fmt.Printf("ip address :%s new value or enter", *Host)
+	fmt.Printf("ip address :%s new value or enter >", *Host)
 	var vs string
 	fmt.Scanf("%s\n", &vs)
 	if vs != "" {
 		*Host = vs
 	}
-	fmt.Printf("user :%s new value or enter", *User)
+	fmt.Printf("user :%s new value or enter >", *User)
 	var vsu string
 	fmt.Scanf("%s\n", &vsu)
 	if vsu != "" {
 		*User = vsu
 	}
 	var vsp string
-	fmt.Printf("password :%s new value or enter", *Password)
+	fmt.Printf("password :%s new value or enter >", *Password)
 	fmt.Scanf("%s\n", &vsp)
 	if vsp != "" {
 		*Password = vsp
@@ -152,7 +152,8 @@ func main() {
 			os.Exit(-1)
 		}
 	}
-	fmt.Println("Конец работы... нажмите Enter...")
+	command.AnyCommand("reboot -f")
+	fmt.Printf("%s перезагружен\nКонец работы...\nНажмите Enter...", name)
 	var none string
 	fmt.Scanf("%s\n", &none)
 
