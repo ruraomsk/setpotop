@@ -152,8 +152,7 @@ func main() {
 			os.Exit(-1)
 		}
 	}
-	command.AnyCommand("reboot -f")
-	fmt.Printf("%s перезагружен\nКонец работы...\nНажмите Enter...", name)
+	fmt.Printf("Устройство %s нужно перезагрузить\nКонец работы...\nНажмите Enter...", name)
 	var none string
 	fmt.Scanf("%s\n", &none)
 
