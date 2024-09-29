@@ -95,11 +95,18 @@ func main() {
 			fmt.Println(err.Error())
 			os.Exit(-1)
 		}
+		data, _ = resource.ReadFile("tobanana/potop.service")
+		err = scp.WriteFile("/etc/systemd/system/potop.service", data, false)
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(-1)
+		}
 		err = scp.CopyFile("potop", "/home/rura/potop", true)
 		if err != nil {
 			fmt.Println(err.Error())
 			os.Exit(-1)
 		}
+		command.AnyCommand("systemctl enable potop.service")
 	case "LT5x":
 		command.KillProc("potop")
 		err = scp.Connection(conn)

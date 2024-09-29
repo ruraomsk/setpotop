@@ -14,6 +14,23 @@ var conn *ssh.Client
 func Connection(c *ssh.Client) {
 	conn = c
 }
+func AnyCommand(command string) error {
+	session, err := conn.NewSession()
+	if err != nil {
+		return err
+	}
+	defer session.Close()
+	fmt.Println(command)
+	var b bytes.Buffer
+	session.Stdout = &b
+	session.Run(command)
+	scanner := bufio.NewScanner(bytes.NewReader(b.Bytes()))
+	for scanner.Scan() {
+		s := scanner.Text()
+		fmt.Println(s)
+	}
+	return nil
+}
 func KillProc(name string) error {
 	fmt.Printf("ps -e | grep %s\n", name)
 	res := make([]string, 0)

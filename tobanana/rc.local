@@ -1,6 +1,5 @@
 # Put your custom commands here that should be executed once
 # the system init finished. By default this file does nothing.
 cd /home/rura
-echo "Start ash" >> start
 ./gobanana.sh &
 #exit 0

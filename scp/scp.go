@@ -24,7 +24,7 @@ func Connection(conn *ssh.Client) error {
 func WriteFile(path string, body []byte, exec bool) error {
 	fmt.Printf("write file %s %v\n", path, exec)
 	bs := bytes.NewReader(body)
-	permissons := "0600"
+	permissons := "0664"
 	if exec {
 		permissons = "0700"
 	}
