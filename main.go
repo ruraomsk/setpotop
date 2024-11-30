@@ -19,11 +19,13 @@ var TempKey *bool
 var User *string
 var Password *string
 
+var buildDate string
+
 //go:embed tolt5x tobanana
 var resource embed.FS
 
 func main() {
-	fmt.Println("Программа настройки и обновления potop\nДля получения справки вызовите setpotop -help")
+	fmt.Printf("Программа настройки и обновления potop\nБудет установлена сборка от %s\nДля получения справки вызовите setpotop -help\n", buildDate)
 	Host = flag.String("host", "192.168.88.1", "IP адресс МФУ")
 	PortSSH = flag.Int("port", 22, "Порт ssh")
 	User = flag.String("user", "root", "Имя пользователя")
@@ -47,7 +49,7 @@ func main() {
 	if vsp != "" {
 		*Password = vsp
 	}
-	fmt.Printf("Производим настройку %s:%d user \"%s\" password \"%s\"\n", *Host, *PortSSH, *User, *Password)
+	fmt.Printf("Сборка от %s\nПроизводим настройку %s:%d user \"%s\" password \"%s\"\n", buildDate, *Host, *PortSSH, *User, *Password)
 	config := &ssh.ClientConfig{
 		User: *User,
 		Auth: []ssh.AuthMethod{
